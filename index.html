@@ -11,7 +11,7 @@
 
 <script>
 //Fisrt I need to grab the JSON array. Some of the code is grabed from http://api.jquery.com/jquery.getjson/
-$.getJSON( "CardData.json", function( data ) {
+$.getJSON( "https://s3-us-west-2.amazonaws.com/udacity-mobile-interview/CardData.json", function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
     var result = "Last Name: "+val["lastName"]
