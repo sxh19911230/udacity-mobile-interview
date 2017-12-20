@@ -5,5 +5,35 @@
 </head>
 
 <body>
-Hi
+<div id="mainlist">
+
+</div>
+
+<script>
+//Fisrt I need to grab the JSON array. Some of the code is grabed from http://api.jquery.com/jquery.getjson/
+$.getJSON( "CardData.json", function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    var result = "Last Name: "+val["lastName"]
+            + "<br/>First Name: "+ val["firstName"]
+            + "<br/>Email: " + val["email"]
+            + "<br/>Company: "+ val["company"]
+            //Not Sure how you want me to convert the time but this is more pretty
+            + "<br/>Start Date: " + new Date(val["startDate"]).toString();
+    
+    bioConvertion = val["bio"].replace(/\*(.*?)\*/g,"<b>$1</b>").replace(/\_(.*?)\_/g,"<u>$1</u>");
+    result+=" <br/>Bio: "+bioConvertion;
+    result+=" <br/>Avatar: <br/>";
+    result+="<img src='"+val["avatar"]+"' />"
+    
+    items.push( "<li id='" + key + "'>" + result + "</li>" );
+  });
+ 
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "#mainlist" );
+});
+
+</script>
 </body>
